@@ -7,11 +7,11 @@ local opts = { noremap = true, silent = true }
 vim.g.mapleader = " " -- Set space as leader key
 
 -- Window Controls
-vim.keymap.set("n", "<Leader>tt", ":tabnew<CR>", { noremap = true, silent = true })  -- New tab
-vim.keymap.set("n", "<Leader>tc", ":tabclose<CR>", { noremap = true, silent = true })  -- Close tab
-vim.keymap.set("n", "<Leader>to", ":tabonly<CR>", { noremap = true, silent = true })  -- Close other tabs
-vim.keymap.set("n", "<Leader>tp", ":tabprev<CR>", { noremap = true, silent = true })  -- Previous tab
-vim.keymap.set("n", "<Leader>tn", ":tabnext<CR>", { noremap = true, silent = true })  -- Next tab
+keymap("n", "<Leader>tt", ":tabnew<CR>", { noremap = true, silent = true })  -- New tab
+keymap("n", "<Leader>tc", ":tabclose<CR>", { noremap = true, silent = true })  -- Close tab
+keymap("n", "<Leader>to", ":tabonly<CR>", { noremap = true, silent = true })  -- Close other tabs
+keymap("n", "<Leader>tp", ":tabprev<CR>", { noremap = true, silent = true })  -- Previous tab
+keymap("n", "<Leader>tn", ":tabnext<CR>", { noremap = true, silent = true })  -- Next tab
 
 -- Window Splits
 keymap("n", "<Leader>sv", ":vsplit<CR>", opts) -- Vertical split
