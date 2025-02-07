@@ -1,5 +1,3 @@
--- keymappings.lua
-
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
@@ -33,10 +31,9 @@ keymap("n", "<Leader>bd", ":bdelete<CR>", opts)  -- Delete buffer
 -- Neotree Navigation
 keymap("n", "<C-n>", ":Neotree filesystem reveal left<CR>", opts)
 
--- Codeium
-keymap('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true, silent = true, desc = "Codeium Accept" })
-keymap('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true, silent = true, desc = "Codeium Clear" })
-keymap('i', '<C-]>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true, silent = true, desc = "Codeium Cycle Completions Next" })
+-- Floaterm
+keymap("n", "<C-g>", "<cmd>:FloatermToggle<CR>", { desc = "Toggle FloatTerm" })
+keymap("t", "<C-g>", "<cmd>:FloatermToggle<CR>", { desc = "Toggle FloatTerm" })
 
 -- Telescope
 local builtin = require("telescope.builtin")
@@ -48,5 +45,28 @@ keymap("n", "<leader>gf", function()
   vim.lsp.buf.format({ async = true }) -- Formats using the attached LSP (including null-ls)
 end, { desc = "Format file" })
 
+-- CopilotChat keymaps
+keymap('i', '<C-S-s>', ":CopilotChatSubmit<CR>", opts)
+
+-- Toggle CopilotChat on the right side with resized split (25% of screen)
+keymap('n', '<Leader>cc', ':CopilotChatToggle<CR>', { desc = "Toggle CopilotChat on right" })
+
+-- Key Mappings for LSP (Clangd and Dart)
+
+-- LSP Navigation (Clangd and Dart)
+keymap("n", "gd", vim.lsp.buf.definition, opts)       -- Go to definition
+keymap("n", "gD", vim.lsp.buf.declaration, opts)      -- Go to declaration
+keymap("n", "gi", vim.lsp.buf.implementation, opts)    -- Go to implementation
+keymap("n", "gr", vim.lsp.buf.references, opts)        -- Go to references
+
+-- LSP Actions
+keymap("n", "<Leader>ca", vim.lsp.buf.code_action, opts)  -- Code actions
+keymap("n", "<Leader>rn", vim.lsp.buf.rename, opts)       -- Rename symbol
+
+-- Diagnostic Keymaps (for errors, warnings, etc.)
+keymap("n", "[d", vim.diagnostic.goto_prev, opts)   -- Go to previous diagnostic
+keymap("n", "]d", vim.diagnostic.goto_next, opts)   -- Go to next diagnostic
+keymap("n", "<Leader>e", vim.diagnostic.open_float, opts)  -- Open diagnostics
 
 return {}
+

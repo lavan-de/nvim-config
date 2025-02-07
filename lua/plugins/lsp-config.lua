@@ -46,5 +46,29 @@ return {
       })
     end,
   },
+  {
+    "nvimdev/lspsaga.nvim",
+    config = function()
+      require("lspsaga").setup({
+        -- Custom configurations for lspsaga
+        border_style = "rounded",  -- Example custom setting
+        rename_action_keys = {
+          quit = "<Esc>",  -- Keybinding to quit the rename interface
+          exec = "<CR>",   -- Keybinding to execute the rename action
+        },
+        code_action = {
+          enable = true,
+          sign = true,
+          sign_priority = 20,
+          virtual_text = true,
+        },
+        -- Add more custom settings as needed
+      })
+    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",  -- Recommended for better LSP support
+      "nvim-tree/nvim-web-devicons",      -- Adds icons (optional)
+    },
+  },
 }
 
